@@ -61,4 +61,7 @@ return packer.startup(function(use)
   -- Mason
   use({"williamboman/mason.nvim"})
   use("williamboman/mason-lspconfig.nvim")
+
+  -- integration with neovim lsp client
+  use("mfussenegger/nvim-jdtls")
 end)
