@@ -58,4 +58,7 @@ return packer.startup(function(use)
   -- Color Scheme
   use("rebelot/kanagawa.nvim")
 
+  -- Mason
+  use({"williamboman/mason.nvim"})
+  use("williamboman/mason-lspconfig.nvim")
 end)
