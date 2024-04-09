@@ -28,8 +28,6 @@ from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-from qtile_extras import widget
-from qtile_extras.widget.decorations import PowerLineDecoration, RectDecoration
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -96,7 +94,20 @@ for vt in range(1, 8):
     )
 
 
-groups = [Group(i) for i in "123456789"]
+# Groups Config
+groups = [
+    Group("1",spawn="firefox", exclusive=True, label="󰈹"),
+    Group("2",label=""),
+    Group("3",label=""),
+    Group("4",label=""),
+    Group("5",label=""),
+    Group("6",label=""),
+    Group("7",label=""),
+    Group("8",label=""),
+    Group("9",label=""),
+
+]
+
 
 for i in groups:
     keys.extend(
@@ -123,7 +134,7 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=6, margin=8, border_focus="#FFFFFF"), 
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -145,29 +156,27 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-powerline = {
-    "decorations": [
-        PowerLineDecoration(path="forward_slash", padding_x=4, size=20, padding_y=4)
-    ],
-}
-
 bar_font_size = 24
 
 screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(background="000000", highlight_method = "block", **powerline, fontsize=bar_font_size),
-                widget.Spacer(background="#fcf6df", padding=100, **powerline, fontsize=bar_font_size),
-                widget.WindowName(background="222222", **powerline, fontsize=bar_font_size),
-                #widget.Spacer(background="#fcf6df", padding=100, **powerline, fontsize=bar_font_size),
-                widget.Battery(background="#877ed5", **powerline, format="{percent:2.0%} {hour:d}:{min:02d}", fontsize=bar_font_size),
-                widget.Clock(background="#cc6699", **powerline, format="%a %I:%M %p", fontsize=bar_font_size),
-                widget.QuickExit(background="#a13210", **powerline, fontsize=bar_font_size)
+                widget.GroupBox(highlight_method = "block", padding_x=5, fontsize=60),
+                widget.Sep(padding=20, linewidth=2),
+                widget.WindowName( fontsize=bar_font_size),
+                widget.CPU(format="CPU: {load_percent}%", fontsize=bar_font_size),
+                widget.Memory(format="Mem: {MemUsed: .0f} {mm}", fontsize=bar_font_size),
+                widget.Sep(padding=20, linewidth=2),
+                widget.Battery( format="{percent:2.0%} {hour:d}:{min:02d}", fontsize=bar_font_size),
+                widget.Sep(padding=20, linewidth=2),
+                widget.Clock(format="%a %I:%M %p", fontsize=bar_font_size),
+                widget.Sep(padding=20, linewidth=2),
+                widget.QuickExit(fontsize=bar_font_size),
             ],
             45,
             margin=[15, 20, 10, 20],
-            #background="#ee8b64",
+            background="#00000000",
             #border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             #border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
