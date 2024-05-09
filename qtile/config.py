@@ -32,10 +32,13 @@ from libqtile.utils import guess_terminal
 mod = "mod4"
 terminal = guess_terminal()
 
+
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
+    #Key([],"XF86MonBrightnessUp",lazy.widget['backlight'].change_backlight(backlight.ChangeDirection.UP)),
+    #Key([],"XF86MonBrightnessDown",lazy.widget['backlight'].change_backlight(backlight.ChangeDirection.DOWN)),
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
@@ -96,15 +99,15 @@ for vt in range(1, 8):
 
 # Groups Config
 groups = [
-    Group("1",spawn="firefox", exclusive=True, label="󰈹"),
-    Group("2",label=""),
-    Group("3",label=""),
-    Group("4",label=""),
-    Group("5",label=""),
-    Group("6",label=""),
-    Group("7",label=""),
-    Group("8",label=""),
-    Group("9",label=""),
+    Group("1",label="1"),
+    Group("2",label="2"),
+    Group("3",label="3"),
+    Group("4",label="4"),
+    Group("5",label="5"),
+    Group("6",label="6"),
+    Group("7",label="7"),
+    Group("8",label="8"),
+    Group("9",label="9"),
 
 ]
 
@@ -135,18 +138,18 @@ for i in groups:
 
 layouts = [
     layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=6, margin=8, border_focus="#FFFFFF"), 
-    layout.Max(),
+    #layout.Max(),
     # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
+    #layout.Stack(num_stacks=2),
+    #layout.Bsp(),
+    #layout.Matrix(),
+    #layout.MonadTall(),
+    #layout.MonadWide(),
+    #layout.RatioTile(),
+    #layout.Tile(),
+    #layout.TreeTab(),
+    layout.VerticalTile(),
+    #layout.Zoomy(),
 ]
 
 widget_defaults = dict(
@@ -156,25 +159,27 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-bar_font_size = 24
+bar_font_size = 25
 
 screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(highlight_method = "block", padding_x=5, fontsize=60),
+                widget.GroupBox(highlight_method = "block", padding_x=5, fontsize=25),
+                widget.Sep(padding=20, linewidth=2),
+                widget.CurrentLayoutIcon(),
                 widget.Sep(padding=20, linewidth=2),
                 widget.WindowName( fontsize=bar_font_size),
                 widget.CPU(format="CPU: {load_percent}%", fontsize=bar_font_size),
                 widget.Memory(format="Mem: {MemUsed: .0f} {mm}", fontsize=bar_font_size),
                 widget.Sep(padding=20, linewidth=2),
-                widget.Battery( format="{percent:2.0%} {hour:d}:{min:02d}", fontsize=bar_font_size),
+                widget.Battery(format="{percent:2.0%} {hour:d}:{min:02d}", fontsize=bar_font_size),
                 widget.Sep(padding=20, linewidth=2),
                 widget.Clock(format="%a %I:%M %p", fontsize=bar_font_size),
                 widget.Sep(padding=20, linewidth=2),
                 widget.QuickExit(fontsize=bar_font_size),
             ],
-            45,
+            35,
             margin=[15, 20, 10, 20],
             background="#00000000",
             #border_width=[2, 0, 2, 0],  # Draw top and bottom borders
