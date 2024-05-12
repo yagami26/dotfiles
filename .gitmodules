@@ -4,3 +4,6 @@
 [submodule "rofi-iwd-menu"]
 	path = rofi-iwd-menu
 	url = https://github.com/TimTinkers/rofi-iwd-menu
+[submodule "rofi"]
+	path = rofi
+	url = https://github.com/adi1090x/rofi
