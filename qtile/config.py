@@ -80,7 +80,9 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawn("rofi -show run"), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawn("/home/ryuk/.config/rofi/launchers/type-4/launcher.sh"), desc="Spawn a command using a prompt widget"),
+    Key([mod, "shift"], "l", lazy.spawn("/home/ryuk/.config/rofi/powermenu/type-4/powermenu.sh"), desc="Spawn a command using a prompt widget"),
+    Key([mod, "shift"], "b", lazy.spawn("/home/ryuk/dotfiles/rofi-bluetooth/rofi-bluetooth"), desc="Spawn a command using a prompt widget"),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -175,9 +177,7 @@ screens = [
                 widget.Sep(padding=20, linewidth=2),
                 widget.Battery(format="{percent:2.0%} {hour:d}:{min:02d}", fontsize=bar_font_size),
                 widget.Sep(padding=20, linewidth=2),
-                widget.Clock(format="%a %I:%M %p", fontsize=bar_font_size),
-                widget.Sep(padding=20, linewidth=2),
-                widget.QuickExit(fontsize=bar_font_size),
+                widget.Clock(format="%a %I:%M %p", fontsize=bar_font_size)
             ],
             35,
             margin=[15, 20, 10, 20],
@@ -217,7 +217,7 @@ floating_layout = layout.Floating(
         Match(title="pinentry"),  # GPG key password entry
     ]
 )
-auto_fullscreen = True
+auto_fullscreen = False
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 
