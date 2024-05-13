@@ -37,9 +37,8 @@ keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
-    #Key([],"XF86MonBrightnessUp",lazy.widget['backlight'].change_backlight(backlight.ChangeDirection.UP)),
-    #Key([],"XF86MonBrightnessDown",lazy.widget['backlight'].change_backlight(backlight.ChangeDirection.DOWN)),
-    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl s +10"), desc="Increase brightness by 10 /sys/class/backlight/amdgpu_bl1/brightness"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl s 10-"), desc="Decrease brightness by 10"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
@@ -81,8 +80,8 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawn("/home/ryuk/.config/rofi/launchers/type-4/launcher.sh"), desc="Spawn a command using a prompt widget"),
-    Key([mod, "shift"], "l", lazy.spawn("/home/ryuk/.config/rofi/powermenu/type-4/powermenu.sh"), desc="Spawn a command using a prompt widget"),
-    Key([mod, "shift"], "b", lazy.spawn("/home/ryuk/dotfiles/rofi-bluetooth/rofi-bluetooth"), desc="Spawn a command using a prompt widget"),
+    Key([mod, "shift"], "q", lazy.spawn("/home/ryuk/.config/rofi/powermenu/type-4/powermenu.sh"), desc="Spawn a command using a prompt widget"),
+    Key([mod, "shift"], "b", lazy.spawn("/home/ryuk/dotfiles/rofi-bluetooth/rofi-bluetooth"), desc="Spawn a command using a prompt widget")
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -140,18 +139,18 @@ for i in groups:
 
 layouts = [
     layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=6, margin=8, border_focus="#FFFFFF"), 
-    #layout.Max(),
+    layout.Max(),
     # Try more layouts by unleashing below layouts.
-    #layout.Stack(num_stacks=2),
-    #layout.Bsp(),
-    #layout.Matrix(),
-    #layout.MonadTall(),
-    #layout.MonadWide(),
-    #layout.RatioTile(),
-    #layout.Tile(),
-    #layout.TreeTab(),
+    layout.Stack(num_stacks=2),
+    layout.Bsp(),
+    layout.Matrix(),
+    layout.MonadTall(),
+    layout.MonadWide(),
+    layout.RatioTile(),
+    layout.Tile(),
+    layout.TreeTab(),
     layout.VerticalTile(),
-    #layout.Zoomy(),
+    layout.Zoomy(),
 ]
 
 widget_defaults = dict(
