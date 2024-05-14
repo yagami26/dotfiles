@@ -39,6 +39,8 @@ keys = [
     # Switch between windows
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl s +10"), desc="Increase brightness by 10 /sys/class/backlight/amdgpu_bl1/brightness"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl s 10-"), desc="Decrease brightness by 10"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"), desc="Decrease audio volumen by 10%"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+"), desc="Increase audio volumen by 10%, pipewire"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
@@ -169,6 +171,8 @@ screens = [
                 widget.GroupBox(highlight_method = "block", padding_x=5, fontsize=25),
                 widget.Sep(padding=20, linewidth=2),
                 widget.CurrentLayoutIcon(),
+                widget.Sep(padding=20, linewidth=2),
+                widget.CurrentLayout(fontsize=25),
                 widget.Sep(padding=20, linewidth=2),
                 widget.WindowName( fontsize=bar_font_size),
                 widget.CPU(format="CPU: {load_percent}%", fontsize=bar_font_size),
