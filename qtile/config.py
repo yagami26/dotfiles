@@ -143,16 +143,16 @@ layouts = [
     layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=6, margin=8, border_focus="#FFFFFF"), 
     layout.Max(),
     # Try more layouts by unleashing below layouts.
-    layout.Stack(num_stacks=2),
-    layout.Bsp(),
-    layout.Matrix(),
-    layout.MonadTall(),
-    layout.MonadWide(),
-    layout.RatioTile(),
-    layout.Tile(),
-    layout.TreeTab(),
-    layout.VerticalTile(),
-    layout.Zoomy(),
+    #layout.Stack(num_stacks=2),
+    #layout.Bsp(),
+    #layout.Matrix(),
+    #layout.MonadTall(),
+    #layout.MonadWide(),
+    #layout.RatioTile(),
+    #layout.Tile(),
+    #layout.TreeTab(),
+    #layout.VerticalTile(),
+    #layout.Zoomy(),
 ]
 
 widget_defaults = dict(
@@ -178,7 +178,8 @@ screens = [
                 widget.CPU(format="CPU: {load_percent}%", fontsize=bar_font_size),
                 widget.Memory(format="Mem: {MemUsed: .0f} {mm}", fontsize=bar_font_size),
                 widget.Sep(padding=20, linewidth=2),
-                widget.Battery(format="{percent:2.0%} {hour:d}:{min:02d}", fontsize=bar_font_size),
+                #widget.Battery(format="{percent:2.0%} {hour:d}:{min:02d}", fontsize=bar_font_size),
+                widget.Battery(format="{percent:2.0%}", fontsize=bar_font_size),
                 widget.Sep(padding=20, linewidth=2),
                 widget.Clock(format="%a %I:%M %p", fontsize=bar_font_size)
             ],
