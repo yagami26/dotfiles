@@ -24,14 +24,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout, qtile, widget
+from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
 terminal = guess_terminal()
+groupbox1 = widget.GroupBox(visible_groups=['1', '2', '3', '4', '5', '6', '7', '8', '9'], highlight_method = "block", padding_x=5, fontsize=25)
+groupbox2 = widget.GroupBox(visible_groups=['7', '8', '9'], highlight_method = "block", padding_x=5, fontsize=25)
 
+@hook.subscribe.screens_reconfigured
+async def _():
+    if len(qtile.screens) > 1:
+        groupbox1.visible_groups = ['1', '2', '3', '4', '5', '6']
+    else:
+        groupbox1.visible_groups = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    if hasattr(groupbox1, 'bar'):
+        groupbox1.bar.draw()
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -102,18 +112,49 @@ for vt in range(1, 8):
 
 # Groups Config
 groups = [
-    Group("1",label="1"),
-    Group("2",label="2"),
-    Group("3",label="3"),
-    Group("4",label="4"),
-    Group("5",label="5"),
-    Group("6",label="6"),
-    Group("7",label="7"),
-    Group("8",label="8"),
-    Group("9",label="9"),
+    Group("1",label="1", screen_affinity=0),
+    Group("2",label="2", screen_affinity=0),
+    Group("3",label="3", screen_affinity=0),
+    Group("4",label="4", screen_affinity=0),
+    Group("5",label="5", screen_affinity=0),
+    Group("6",label="6", screen_affinity=0),
+    Group("7",label="7", screen_affinity=1),
+    Group("8",label="8", screen_affinity=1),
+    Group("9",label="9", screen_affinity=1),
 
 ]
 
+def go_to_group(name: str):
+    def _inner(qtile):
+        if len(qtile.screens) == 1:
+            qtile.groups_map[name].toscreen()
+            return
+
+        if name in '123':
+            qtile.focus_screen(0)
+            qtile.groups_map[name].toscreen()
+        else:
+            qtile.focus_screen(1)
+            qtile.groups_map[name].toscreen()
+
+    return _inner
+
+def go_to_group_and_move_window(name: str):
+    def _inner(qtile):
+        if len(qtile.screens) == 1:
+            qtile.current_window.togroup(name, switch_group=True)
+            return
+
+        if name in "123":
+            qtile.current_window.togroup(name, switch_group=False)
+            qtile.focus_screen(0)
+            qtile.groups_map[name].toscreen()
+        else:
+            qtile.current_window.togroup(name, switch_group=False)
+            qtile.focus_screen(1)
+            qtile.groups_map[name].toscreen()
+
+    return _inner
 
 for i in groups:
     keys.extend(
@@ -122,17 +163,16 @@ for i in groups:
             Key(
                 [mod],
                 i.name,
-                lazy.group[i.name].toscreen(),
+                lazy.function(go_to_group(i.name)),
                 desc="Switch to group {}".format(i.name),
             ),
             # mod1 + shift + group number = switch to & move focused window to group
             Key(
                 [mod, "shift"],
                 i.name,
-                lazy.window.togroup(i.name, switch_group=True),
+                lazy.function(go_to_group_and_move_window(i.name)),
                 desc="Switch to & move focused window to group {}".format(i.name),
-            ),
-            # Or, use below if you prefer not to switch to that group.
+            )            # Or, use below if you prefer not to switch to that group.
             # # mod1 + shift + group number = move focused window to group
             # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
             #     desc="move focused window to group {}".format(i.name)),
@@ -168,7 +208,7 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(highlight_method = "block", padding_x=5, fontsize=25),
+                groupbox1,
                 widget.Sep(padding=20, linewidth=2),
                 widget.CurrentLayoutIcon(),
                 widget.Sep(padding=20, linewidth=2),
@@ -188,7 +228,29 @@ screens = [
             background="#00000000",
             #border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             #border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+        ), 
+        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
+        # By default we handle these events delayed to already improve performance, however your system might still be struggling
+        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
+        # x11_drag_polling_rate = 60,
+    ),
+    Screen(
+        top=bar.Bar(
+            [
+                groupbox2,
+                #widget.GroupBox(highlight_method = "block", padding_x=5, fontsize=25, visible_groups=['7', '8', '9']),
+                widget.WindowName(fontsize=bar_font_size),
+                widget.Clock(format="%a %I:%M %p", fontsize=bar_font_size)
+            ],
+            35,
+            margin=[15, 20, 10, 20],
+            #border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            #background="#00000000",
+            #border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            #border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
+        wallpaper="/home/ryuk/Downloads/dragon-ball-kid-goku-moon-halloween-wallpaper-scaled.jpg",
+        wallpaper_mode="fill",
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
@@ -205,7 +267,7 @@ mouse = [
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
-follow_mouse_focus = True
+follow_mouse_focus = False
 bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
