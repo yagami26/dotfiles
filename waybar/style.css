@@ -1,0 +1,164 @@
+@import "mocha.css";
+
+* {
+  font-family: FantasqueSansMono Nerd Font;
+  font-size: 13px;
+  min-height: 0;
+}
+
+#waybar {
+  color: @text;
+  background-color: rgba(45, 45, 45, 0.2);
+  color: #ffffff;
+}
+
+#window {
+  color: @crust;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+#workspaces {
+  padding: 0.5rem 1rem;
+  margin: 4px 0;
+  border-radius: 1rem;
+  background-color: @surface0;
+  margin-left: 1rem;
+  padding: 0px 1px;
+}
+
+#workspaces button {
+  color: @lavender;
+  margin:4px 5px 4px 0px;
+  padding:0px 4px 0px 4px;
+  border-radius: 0.4rem;
+  min-width: 40px;
+  padding: 0.4rem;
+  transition: all 0.01s ease-in-out;
+}
+
+#workspaces button.active {
+  color: @crust;
+  border-radius: 1rem;
+  min-width: 65px;
+  padding:0px 4px 0px 4px;
+  background: @rosewater;
+  font-weight: bold;
+}
+
+#workspaces button:hover {
+  border-radius: 1rem;
+}
+
+#custom-music,
+#tray,
+#backlight,
+#clock,
+#battery,
+#memory,
+#network,
+#pulseaudio,
+#custom-lock,
+#load,
+#cpu,
+#custom-system,
+#custom-appmenu,
+#custom-filemanager,
+#custom-telegram,
+#custom-netflix,
+#custom-spotify,
+#custom-reddit,
+#custom-power {
+  background-color: @surface0;
+  padding: 0.5rem 1rem;
+  margin: 4px 0;
+}
+
+#clock {
+  color: @blue;
+  border-radius: 0px 1rem 1rem 0px;
+  margin-right: 1rem;
+}
+
+#custom-appmenu {
+  color: @rosewater;
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 1rem;
+}
+
+#custom-filemanager {
+  color: @yellow;
+}
+
+#custom-telegram {
+  color: @blue;
+}
+
+#custom-netflix {
+  color: @red;
+}
+
+
+#custom-spotify {
+  color: @green;
+}
+
+
+#custom-reddit {
+  color: @red;
+  border-radius: 0px 1rem 1rem 0px;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.charging {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  color: @red;
+}
+
+#backlight {
+  color: @yellow;
+}
+
+#memory {
+  color: @yellow;
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 1rem;
+}
+
+#backlight, #battery {
+    border-radius: 0;
+}
+
+#pulseaudio {
+  color: @maroon;
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 1rem;
+}
+
+#custom-music {
+  color: @mauve;
+  border-radius: 1rem;
+}
+
+#custom-lock {
+    border-radius: 1rem 0px 0px 1rem;
+    color: @lavender;
+}
+
+#custom-power {
+    margin-right: 1rem;
+    border-radius: 0px 1rem 1rem 0px;
+    color: @red;
+}
+
+#tray {
+  margin-right: 1rem;
+  border-radius: 1rem;
+}
+
