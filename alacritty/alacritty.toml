@@ -1,5 +1,0 @@
-import = [
-    "~/.config/alacritty/alacritty-theme/themes/monokai_charcoal.toml"
-]
-[window]
-opacity=1.0
