@@ -1,0 +1,99 @@
+wtf:
+  colors:
+    border:
+      focusable: darkslateblue
+      focused: orange
+      normal: gray
+  grid:
+    columns: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+    rows: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+  refreshInterval: 10
+  mods:
+    clocks_a:
+      colors:
+        rows:
+          even: "lightblue"
+          odd: "white"
+      enabled: true
+      locations:
+        India: "Asia/Kolkata"
+        UTC: "Etc/UTC"
+      position:
+        top: 4
+        left: 0
+        height: 1
+        width: 4
+      refreshInterval: 15
+      sort: "alphabetical"
+      title: "Clocks"
+      type: "clocks"
+    resourceusage:
+      cpuCombined: true
+      enabled: true
+      position:
+        top: 3
+        left: 0
+        height: 1
+        width: 4
+      refreshInterval: 20s
+      showCPU: true
+      showMem: true
+      showSwp: false  
+    hackernews:
+      enabled: true
+      numberOfStories: 15
+      position:
+        top: 0
+        left: 4
+        height: 4
+        width: 12
+      storyType: top
+      refreshInterval: 15m
+    power:
+      colors:
+        border:
+          normal: red
+      enabled: true
+      position:
+        top: 5
+        left: 0
+        height: 3
+        width: 4
+      refreshInterval: 60s
+      title: "Power"
+    textfile:
+      enabled: true
+      filePath: "~/.config/wtf/notes.md"
+      format: true
+      position:
+        top: 4
+        left: 4
+        height: 4
+        width: 12
+      refreshInterval: 30
+      wrapText: false
+    todo:
+      checkedIcon: "X"
+      colors:
+      checked: gray
+      highlight:
+        fore: "black"
+        back: "orange"
+      enabled: true
+      filename: "todo.yml"
+      position:
+        top: 0
+        left: 0
+        height: 3
+        width: 4
+      refreshInterval: 1h  
+    cmdrunner:
+      args: []
+      cmd: "fastfetch"
+      enabled: false
+      position:
+        top: 0
+        left: 4
+        height: 10
+        width: 12
+      refreshInterval: 15m
