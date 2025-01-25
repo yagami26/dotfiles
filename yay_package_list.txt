@@ -1,0 +1,14 @@
+catppuccin-cursors-latte
+catppuccin-gtk-theme-frappe
+catppuccin-gtk-theme-latte
+catppuccin-gtk-theme-macchiato
+catppuccin-gtk-theme-mocha
+grimblast-git
+hyprland-git
+kitty-git
+sioyek
+tlpui
+waybar-git
+wtfutil-bin
+yay
+yay-debug

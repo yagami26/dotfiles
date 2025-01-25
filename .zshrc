@@ -104,3 +104,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ss="grimblast save area ~/screenshot.png"
 alias vim="nvim"
+alias bak_official="pacman -Qqen > /home/khirod/dotfiles/official_package_list.txt"
+alias bak_aur="pacman -Qqem > /home/khirod/dotfiles/yay_package_list.txt"
+
+export EDITOR=nvim
+export VISUAL=nvim
