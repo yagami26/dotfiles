@@ -12,6 +12,8 @@ cpio
 deluge
 dhcpcd
 discord
+dunst
+ebook-tools
 efibootmgr
 ethtool
 fastfetch
@@ -36,6 +38,7 @@ neovim
 networkmanager
 noto-fonts
 nwg-look
+okular
 otf-font-awesome
 papirus-icon-theme
 powertop
@@ -50,12 +53,16 @@ smartmontools
 sudo
 swaybg
 telegram-desktop
+thunar
+torbrowser-launcher
 ttf-font-awesome
 ttf-jetbrains-mono-nerd
+tumbler
 unrar
 unzip
 vi
 vim
+wget
 wine
 wl-clipboard
 wofi
