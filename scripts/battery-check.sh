@@ -1,20 +1,21 @@
 #!/bin/bash
 
-BATTERY_LEVEL=$(cat /sys/class/power_supply/BATT/capacity)
-THRESHOLD_1=70
-THRESHOLD_2=15
-THRESHOLD_3=10
+notify_levels=(3 5 10 70)
+BAT=$(ls /sys/class/power_supply |grep BAT |head -n 1)
+last_notify=100
 
-notify() {
-  local level=$1
-  notify-send -i /home/khirod/.config/dunst/info-icon.png "Battery Warning" "Battery level is at ${level}%! Please charge your laptop."
-}
-
-# Notify based on thresholds
-if (( BATTERY_LEVEL <= THRESHOLD_3 )); then
-  notify "$BATTERY_LEVEL"
-elif (( BATTERY_LEVEL <= THRESHOLD_2 )); then
-  notify "$BATTERY_LEVEL"
-elif (( BATTERY_LEVEL <= THRESHOLD_1 )); then
-  notify "$BATTERY_LEVEL"
-fi
+while true; do
+    bat_lvl=$(cat /sys/class/power_supply/${BAT}/capacity)
+    if [ $bat_lvl -gt $last_notify ]; then
+            last_notify=$bat_lvl
+    fi
+    for notify_level in ${notify_levels[@]}; do
+        if [ $bat_lvl -le $notify_level ]; then
+            if [ $notify_level -lt $last_notify ]; then
+                notify-send -i /home/khirod/dotfiles/dunst/info-icon.png "Low Battery" "$bat_lvl% battery remaining."
+                last_notify=$bat_lvl
+            fi
+        fi
+    done
+sleep 120
+done
