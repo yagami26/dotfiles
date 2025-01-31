@@ -1,6 +1,6 @@
 #!/bin/bash
 
-notify_levels=(3 5 10 70)
+notify_levels=(3 5 10 15 20 25)
 BAT=$(ls /sys/class/power_supply |grep BAT |head -n 1)
 last_notify=100
 
