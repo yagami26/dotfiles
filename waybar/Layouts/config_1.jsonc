@@ -12,7 +12,7 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 32,
+  "height": 30,
   "margin-left": 10,
   "margin-right": 10,
   "margin-top": 5,
@@ -24,22 +24,19 @@
     "group/hollow-left-2",
     // "group/hollow-left-2",
     "group/hollow-left-4",
+    "group/hollow-left-5",
     "group/hollow-left-1",
   ],
-  "modules-center": [
-    "group/hollow-center-1"
-  ],
+  "modules-center": [],
   "modules-right": [
+    "group/hollow-right-5",
     "group/hollow-right-4",
     "group/hollow-right-1",
-    "group/hollow-right-3",
-    "group/hollow-left-5",
+    "group/hollow-right-3"
   ],
   "group/hollow-center-1": {
     "orientation": "horizontal",
-    "modules": [
-      "hyprland/window"
-    ]
+    "modules": [],
   },
   "group/hollow-left-4": {
     "orientation": "horizontal",
@@ -96,30 +93,17 @@
       "backlight",
       "wireplumber",
       "network",
-      "battery",
       "custom/power",
+      "battery",
+    ],
+  },
+  "group/hollow-right-5": {
+    "orientation": "horizontal",
+    "modules": [
+      "hyprland/window"
     ],
   },
   // Modules configuration
-  "hyprland/window": {
-    "format": "<span underline='low' underline_color='white' rise='3072'>{title}</span>",
-    "separate-outputs": true,
-    "rewrite": {
-      "(.*)@archlinux:(.*)": "$1",
-      "(.*) — Mozilla Firefox": "$1 Firefox",
-      "(.*)Mozilla Firefox": "Firefox",
-      "(.*) - Visual Studio Code": "$1 - VSCode",
-      "(.*)Visual Studio Code": "VSCode",
-      "(.*) - Code - OSS": "$1 - Code OSS",
-      "(.*)Code - OSS": "Code OSS",
-      "(.*) — Dolphin": "$1 - Dolphin",
-      "(.*)Spotify": "Spotify",
-      "(.*)Steam": "Steam",
-      "(.*) - Discord": "$1 - Discord",
-      "(.*)Netflix": "Netflix"
-    },
-    "max-length": 50
-  },
   "hyprland/workspaces": {
     "on-click": "activate",
     "activate-only": false,
@@ -143,6 +127,11 @@
     "persistent_workspaces": {
       "[]": 3
     }
+  },
+  "hyprland/window": {
+    "format": " 󰶞 {}",
+    "max-length": 32,
+    "separate-outputs": false,
   },
   "tray": {
     "icon-size": 16,
@@ -168,22 +157,22 @@
     "format-critical": "{temperatureC}°C {icon}",
     "critical-threshold": 80,
     "interval": 2,
-    "format": "   {temperatureC:>2}°C",
+    "format": " {temperatureC:>2}°C",
     "format-icons": [
       "0",
       "",
       ""
     ],
-    "on-click": "kitty -e zsh -c 'btop --force-utf; exec zsh'",
+    "on-click": "kitty -e zsh -c 'btop; exec zsh'",
   },
   "cpu": {
     "interval": 2,
-    "format": "   {usage:>2}%",
-    "on-click": "kitty -e zsh -c 'btop --force-utf; exec zsh'",
+    "format": " {usage:>2}%",
+    "on-click": "kitty -e zsh -c 'btop; exec zsh'",
   },
   "memory": {
     "interval": 2,
-    "format": "   {:>2}%",
+    "format": " {:>2}%",
   },
   "disk": {
     "interval": 15,
@@ -231,7 +220,7 @@
   },
   "network": {
     "interval": 3,
-    "format-wifi": " {icon} ",
+    "format-wifi": "{icon}",
     "format-ethernet": "󰌗 {ipaddr}",
     "format-linked": "󰌙 {ifname} (Sin IP)",
     "format-disconnected": "󰖪",
@@ -241,7 +230,7 @@
     "tooltip-format-disconnected": "󰖪 No internet connection",
     "tooltip-format-linked": "󰌙 {ifname}: Not ip",
     "max-length": 30,
-    "on-click": "networkmanager_dmenu",
+    "on-click": "~/.config/rofi/wifi/script.sh",
     "format-icons": {
       "wifi": [
         "󰤯",
@@ -282,14 +271,14 @@
     "signal": 8,
   },
   "custom/user": {
-    "format": "   {}",
+    "format": " {}",
     "exec": "whoami",
     "interval": 30,
     "tooltip": false,
     "on-click": "notify-send 'Usuario' '$(whoami)@$(hostname)'"
   },
   "wireplumber": {
-    "format": " {icon} ",
+    "format": "{icon}",
     "tooltip-format": "{icon}{volume:>3}%",
     "format-muted": "󰖁 {volume:>3}%",
     "format-bluetooth": "{icon} {volume:>2}% 󰂯", //{format_source}",
@@ -301,7 +290,7 @@
     ],
   },
   "custom/power": {
-    "format": " {icon} ",
+    "format": "{icon}",
     "format-icons": "", //  
     "exec-on-event": "true",
     "on-click": "wlogout",
@@ -319,8 +308,8 @@
       "warning": 30,
       "critical": 15
     },
-    "format": " {icon} ",
-    "format-full": " {icon} ",
+    "format": "{icon}",
+    "format-full": "{icon}",
     "format-plugged": " {capacity}% <span font='Font Awesome 5 Free'>\uf0e7</span> ",
     "format-alt": "{icon} {capacity}%",
     "tooltip-format": "{capacity}%, about {time} left",

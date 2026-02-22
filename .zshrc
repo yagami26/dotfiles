@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="afowler"
+ZSH_THEME="strug"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -102,10 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ss="grimblast save area ~/screenshot.png"
-alias vim="nvim"
-alias bak_official="pacman -Qqen > /home/khirod/dotfiles/official_package_list.txt"
-alias bak_aur="pacman -Qqem > /home/khirod/dotfiles/yay_package_list.txt"
 
-export EDITOR=nvim
-export VISUAL=nvim
+pokemon-colorscripts --no-title -n charizard
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8

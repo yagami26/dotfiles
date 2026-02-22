@@ -19,15 +19,7 @@
 
 #waybar .module:hover {
     color: @subtext1;
-}
 
-#hollow-right-4 .module:hover,
-#hollow-right-1 .module:hover,
-#hollow-right-3 .module:hover,
-#hollow-left-5 .module:hover,
-#hollow-left-4 .module:hover,
-#hollow-left-1 .module:hover {
-    color: @mauve;
 }
 
 #window#waybar {
@@ -75,6 +67,7 @@
 }
 
 #hollow-right-5,
+#hollow-center-1,
 #hollow-left-1,
 #hollow-left-4,
 #hollow-right-4,
@@ -85,23 +78,12 @@
   background: #1e1e2e;
   border-radius: 10.5pt;
   padding: 8px;
-  border: 2px solid @peach;
-}
-
-#hollow-center-1 {
-  font-weight: bold;
-  font-size: 20px;
-
 }
 
 #hollow-left-2 {
   background: @base;
   border-radius: 10.5pt;
-  border: 2px solid @peach;
-}
 
-#hollow-right-5 {
-  border: 2px solid @peach;
 }
 
 
